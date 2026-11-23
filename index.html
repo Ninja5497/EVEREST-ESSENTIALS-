@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Everest Essentials</title>
+<style>
+:root{--bg:#f7f6ff;--card:#fff;--ink:#1d1a3b;--mute:#6b6890;--pri:#6d3df0;--pri2:#8b6cf7;--soft:#ece8ff;--line:#e3dfff;--dark:#161a33;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12112a;--card:#1c1a3a;--ink:#f1efff;--mute:#a9a5d0;--soft:#27244d;--line:#34306a;--dark:#0b0c1f;color-scheme:dark}}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0}
+:focus-visible{outline:3px solid var(--pri2);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+header{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:16px;height:62px}
+.logo{font-weight:800;font-size:22px;display:flex;gap:8px;align-items:center}
+nav{display:flex;gap:18px;font-size:14px;font-weight:600;color:var(--mute)}
+nav a:hover{color:var(--pri)}
+.search{flex:1;max-width:340px;margin-left:auto}
+.search input{width:100%;padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.ico{background:var(--soft);width:40px;height:40px;border-radius:50%;display:grid;place-items:center;position:relative;font-size:18px}
+#cnt{position:absolute;top:-4px;right:-4px;background:#e5484d;color:#fff;font-size:11px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center}
+#cnt.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.6)}}
+.hero{background:linear-gradient(120deg,var(--soft),#d9d0ff 70%);border-radius:0 0 28px 28px;overflow:hidden}
+[data-theme="dark"] .hero{background:var(--soft)}
+@media (prefers-color-scheme:dark){.hero{background:var(--soft)}}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:10px;padding-top:40px;padding-bottom:40px;min-height:340px}
+.hero h1{font-size:clamp(36px,6vw,62px);line-height:1.05;margin:0 0 12px}
+.hero h1 b{color:var(--pri)}
+.hero p{color:var(--mute);margin:0 0 22px;max-width:380px}
+.btn{background:var(--pri);color:#fff;padding:12px 26px;border-radius:10px;font-weight:700;display:inline-block;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(109,61,240,.4)}
+.stage{position:relative;text-align:center;font-size:clamp(120px,22vw,220px);line-height:1}
+.stage .hp{display:inline-block;animation:float 4s ease-in-out infinite}
+.stage .pl{position:absolute;right:6%;bottom:-6px;font-size:.38em;animation:sway 5s ease-in-out infinite;transform-origin:bottom}
+.stage .sp{position:absolute;font-size:.16em;animation:tw 2.4s infinite}
+.stage .sp.a{top:8%;left:12%}.stage .sp.b{top:22%;right:10%;animation-delay:1s}
+@keyframes float{50%{transform:translateY(-18px) rotate(-3deg)}}
+@keyframes sway{50%{transform:rotate(5deg)}}
+@keyframes tw{50%{opacity:.2;transform:scale(.6)}}
+.hero .in{animation:rise .8s both}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:24px 0}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 8px;text-align:center;font-size:13px;font-weight:600;transition:.25s}
+.cat span{display:block;font-size:30px;margin-bottom:4px;transition:transform .3s}
+.cat:hover{border-color:var(--pri);transform:translateY(-4px)}
+.cat:hover span{transform:scale(1.2) rotate(-6deg)}
+.sec{margin:40px 0}
+.sh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.sh h2{margin:0;font-size:22px}
+.sh a{color:var(--pri);font-weight:600;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(109,61,240,.18)}
+.pic{background:var(--soft);height:140px;display:grid;place-items:center;font-size:64px;position:relative}
+.pic i{position:absolute;top:10px;left:10px;background:#e5484d;color:#fff;font:700 11px system-ui;padding:3px 8px;border-radius:8px}
+.card:hover .pic em{transform:scale(1.15) rotate(5deg)}
+.pic em{font-style:normal;transition:transform .3s}
+.info{padding:12px 14px 14px}
+.info h3{margin:0;font-size:14px}
+.rate{font-size:12px;color:var(--mute)}
+.rate b{color:#f5a524}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.price{font-weight:800}
+.price s{font-weight:400;color:var(--mute);font-size:12px;margin-left:4px}
+.add{background:var(--pri);color:#fff;width:34px;height:34px;border-radius:9px;font-size:16px;transition:transform .15s}
+.add:active{transform:scale(.85)}
+.promo{background:linear-gradient(100deg,#6d3df0,#9a7bff);color:#fff;border-radius:20px;padding:30px 34px;display:flex;align-items:center;justify-content:space-between;gap:16px;overflow:hidden;position:relative}
+.promo small{opacity:.85}
+.promo h2{font-size:clamp(26px,4vw,40px);margin:4px 0 14px}
+.promo .btn{background:#fff;color:var(--pri)}
+.promo .bag{font-size:90px;animation:float 3.5s ease-in-out infinite}
+.promo.alt{background:linear-gradient(100deg,#1d1a3b,#4b2fb5)}
+.rail{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+.rail .card{min-width:200px;scroll-snap-align:start}
+.timer{display:flex;gap:8px;margin-top:2px}
+.timer div{background:rgba(255,255,255,.2);border-radius:8px;padding:6px 10px;text-align:center;font-weight:800;min-width:48px}
+.timer small{display:block;font-weight:400;font-size:10px}
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.feat{text-align:center;font-size:13px;color:var(--mute)}
+.feat b{display:block;color:var(--ink);font-size:14px}
+.feat span{font-size:28px;display:block}
+.brands{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.brands span{background:var(--card);border:1px solid var(--line);padding:12px 22px;border-radius:12px;font-weight:800;color:var(--mute);transition:.25s}
+.brands span:hover{color:var(--pri);border-color:var(--pri)}
+.rev{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rev .card{padding:18px}
+.rev p{margin:6px 0 12px;font-size:14px}
+.news{background:var(--soft);border-radius:20px;padding:34px;text-align:center}
+.news h2{margin:0 0 6px}
+.news p{margin:0 0 16px;color:var(--mute)}
+.news input{padding:12px 16px;border-radius:10px;border:1px solid var(--line);width:min(300px,70%);background:var(--card);color:var(--ink)}
+.news .btn{margin-left:6px}
+footer{background:var(--dark);color:#cfcdf0;margin-top:50px;padding:36px 0 20px;border-radius:24px 24px 0 0}
+.fg{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:20px;font-size:13px}
+.fg h4{margin:0 0 10px;color:#fff;font-size:14px}
+.fg a{display:block;margin-bottom:6px;opacity:.8}
+.fg a:hover{opacity:1;color:#fff}
+.copy{text-align:center;font-size:12px;opacity:.6;margin-top:24px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,80px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:12px;font-size:14px;transition:transform .3s;z-index:30}
+.toast.on{transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.rv.on{opacity:1;transform:none}
+@media (max-width:820px){
+nav{display:none}.search{max-width:none}
+.hero .wrap{grid-template-columns:1fr;text-align:center;padding-top:26px}.hero p{margin-inline:auto}
+.cats{grid-template-columns:repeat(3,1fr)}
+.grid{grid-template-columns:repeat(2,1fr)}
+.feats{grid-template-columns:repeat(2,1fr)}
+.rev{grid-template-columns:1fr}
+.fg{grid-template-columns:1fr 1fr}
+.promo .bag{display:none}
+}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.admb{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.apan{position:fixed;left:14px;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:40;width:min(340px,calc(100% - 28px));max-height:70vh;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 12px 30px rgba(0,0,0,.3)}
+.apan h3{margin:0 0 10px}.apan input{width:100%;margin-bottom:8px;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.apan .btn{padding:9px 14px;font-size:13px;margin:0 6px 8px 0}
+.ar{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:6px 0;border-top:1px solid var(--line)}.ar button{background:#e5484d;color:#fff;border-radius:8px;padding:2px 8px}
+[hidden]{display:none!important}
+#dash{position:fixed;inset:0;z-index:50;background:var(--bg);overflow:auto;padding:calc(14px + env(safe-area-inset-top,0px)) 0 40px}
+.dh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}.dh h2{margin:0;font-size:20px}.dh .btn{padding:9px 14px;font-size:13px;margin-left:6px}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}.dg{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:14px}
+.kc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}.kc small{color:var(--mute);font-weight:600}.kc b{display:block;font-size:24px;margin-top:4px}.kc h3{margin:0 0 12px;font-size:15px}
+.bars{display:flex;align-items:flex-end;gap:10px;height:170px}.bc{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}.bc i{width:100%;background:linear-gradient(var(--pri2),var(--pri));border-radius:8px 8px 0 0;transition:height .9s;min-height:3px}.bc small{margin-top:6px;font-size:11px}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px 8px;border-top:1px solid var(--line);white-space:nowrap}th{color:var(--mute);border:0}select{padding:5px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+@media (max-width:820px){.kp{grid-template-columns:repeat(2,1fr)}.dg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+<a class="logo" href="#top">🏔️ Everest Essentials</a>
+<nav><a href="#top">Home</a><a href="#featured">Shop</a><a href="#cats">Categories</a><a href="#deals">Deals</a></nav>
+<div class="search"><input type="search" placeholder="Search products…" aria-label="Search products" id="q"></div>
+<div class="ico" aria-label="Account">👤</div>
+<div class="ico" id="cico" role="button" tabindex="0" aria-label="Cart">🛍️<span id="cnt">0</span></div>
+</div></header>
+
+<section class="hero" id="top"><div class="wrap">
+<div class="in"><h1>Big Sale<br>Up to <b>50% Off</b></h1><p>Shop your favorite products at the best price.</p><a class="btn" href="#featured">Shop Now</a></div>
+<div class="stage in" style="animation-delay:.2s"><span class="sp a">✦</span><span class="sp b">✦</span><span class="hp">🎧</span><span class="pl">🪴</span></div>
+</div></section>
+
+<main class="wrap">
+<div class="cats rv" id="cats"></div>
+
+<section class="sec rv" id="featured"><div class="sh"><h2>Featured Products</h2><a href="#new">View All →</a></div><div class="grid" id="g1"></div></section>
+
+<section class="sec rv"><div class="promo"><div><small>Special Deal</small><h2>Extra 20% Off</h2><small>On selected products</small><br><br><a class="btn" href="#deals">Shop Now</a></div><div class="bag">🛍️</div></div></section>
+
+<section class="sec rv" id="new"><div class="sh"><h2>New Arrivals</h2><a href="#top">View All →</a></div><div class="grid" id="g2"></div></section>
+
+<section class="sec rv" id="deals"><div class="promo alt"><div><small>Flash Sale ends in</small><h2>Today’s Hot Deals</h2><div class="timer" id="tm"></div></div><div class="bag">⚡</div></div></section>
+
+<section class="sec rv"><div class="sh"><h2>Best Sellers</h2><a href="#top">View All →</a></div><div class="rail" id="rail"></div></section>
+
+<section class="sec rv"><div class="sh"><h2>Top Brands</h2></div><div class="brands"><span>NOVA</span><span>Stride</span><span>Pulse</span><span>Aurora</span><span>Kinetic</span><span>Lumen</span></div></section>
+
+<section class="sec rv"><div class="sh"><h2>What Customers Say</h2></div><div class="rev">
+<div class="card"><div class="rate"><b>★★★★★</b></div><p>“Fast delivery and the earbuds sound great. Easy to order from my phone.”</p><b>Amina K.</b></div>
+<div class="card"><div class="rate"><b>★★★★★</b></div><p>“Returns were simple. I swapped my shoes in two days.”</p><b>Rahul S.</b></div>
+<div class="card"><div class="rate"><b>★★★★☆</b></div><p>“Good prices and helpful support. Will shop again.”</p><b>Layla M.</b></div>
+</div></section>
+
+<section class="sec rv"><div class="feats">
+<div class="feat"><span>🚚</span><b>Free Delivery</b>On orders above AED 200</div>
+<div class="feat"><span>🔒</span><b>Secure Payment</b>100% safe &amp; secure</div>
+<div class="feat"><span>🔄</span><b>Easy Returns</b>Within 7 days</div>
+<div class="feat"><span>🎧</span><b>24/7 Support</b>Always here to help</div>
+</div></section>
+
+<section class="sec rv"><div class="news"><h2>Get 10% off your first order</h2><p>Join our list for deals and new arrivals.</p><input type="email" placeholder="Your email" aria-label="Email" id="em"><button class="btn" id="sub">Subscribe</button></div></section>
+</main>
+
+<footer><div class="wrap"><div class="fg">
+<div><h4>🏔️ Everest Essentials</h4>Your one-stop shop for quality products at great prices.</div>
+<div><h4>Quick Links</h4><a href="#top">Home</a><a href="#featured">Shop</a><a href="#cats">Categories</a><a href="#deals">Deals</a></div>
+<div><h4>Customer Care</h4><a href="#">Help &amp; Support</a><a href="#">Returns &amp; Refunds</a><a href="#">Shipping Info</a><a href="#">Contact Us</a></div>
+<div><h4>Policy</h4><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Cancellation Policy</a></div>
+<div><h4>Follow Us</h4><a href="#">YouTube</a><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">X</a></div>
+</div><div class="copy">© 2026 Everest Essentials. All rights reserved.</div></div></footer>
+<div id="adm" hidden><button id="abtn" class="btn admb">⚙ Admin</button><div id="apan" class="apan" hidden><h3>Manage products</h3><button class="btn" id="adash">📊 Open dashboard</button><input id="ae" placeholder="Emoji, e.g. 👟"><input id="an" placeholder="Product name"><input id="ap" type="number" placeholder="Price (AED)"><input id="ab" placeholder="Badge (optional)"><button class="btn" id="aadd">Add product</button><button class="btn" id="aseed">Load samples</button><div id="alist"></div></div></div>
+<div class="apan" id="cpan" style="left:auto;right:14px;top:70px;bottom:auto" hidden><h3>Your cart</h3><div id="clist"></div><b id="ctot"></b><br><br><input id="cn" placeholder="Your name"><input id="cph" type="tel" placeholder="Phone number"><button class="btn" id="cgo">Place order</button><button class="btn" id="cx">Close</button></div>
+<div id="dash" hidden><div class="wrap"><div class="dh"><h2>📊 Everest Essentials · Dashboard</h2><span><button class="btn" id="dman">Manage products</button><button class="btn" id="dx">Close</button></span></div>
+<div class="kp"><div class="kc"><small>Revenue</small><b id="k1">0</b></div><div class="kc"><small>Orders</small><b id="k2">0</b></div><div class="kc"><small>Items sold</small><b id="k3">0</b></div><div class="kc"><small>Avg. order</small><b id="k4">0</b></div></div>
+<div class="dg"><div class="kc"><h3>Revenue · last 7 days</h3><div class="bars" id="chart"></div></div><div class="kc"><h3>Top products</h3><div id="top"></div></div></div>
+<div class="kc"><h3>Recent orders</h3><div class="tw"><table><thead><tr><th>Date</th><th>Customer</th><th>Phone</th><th>Total</th><th>Status</th></tr></thead><tbody id="otb"></tbody></table></div></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.js"></script>
+<script>
+var C=[["👕","Fashion"],["💻","Electronics"],["🛋️","Home & Living"],["💄","Beauty"],["🏋️","Sports"],["📚","Books"]];
+var P=[["👟","Running Shoes","4.5",320,109,"-20%"],["⌚","Smart Watch","4.6",210,179,"-15%"],["🎒","Backpack","4.4",180,59,""],["🎧","Wireless Earbuds","4.5",450,89,"-30%"],
+["📱","Smartphone","4.7",530,699,"New"],["🕶️","Sunglasses","4.3",120,39,"New"],["📷","Action Camera","4.6",95,289,"New"],["🧴","Skin Care Set","4.4",210,69,"New"],
+["⌨️","Keyboard","4.5",140,99,""],["🏀","Basketball","4.2",88,35,""],["☕","Coffee Maker","4.6",260,149,""],["💡","Smart Lamp","4.4",175,55,""]];
+function card(p,i){return '<div class="card"><div class="pic">'+(p[5]?'<i>'+p[5]+'</i>':'')+'<em>'+p[0]+'</em></div><div class="info"><h3>'+p[1]+'</h3><div class="rate">'+(p[3]?'<b>★</b> '+p[2]+' ('+p[3]+')':(p[6]||'&nbsp;'))+'</div><div class="row"><span class="price">AED '+p[4].toLocaleString('en-US')+'</span><button class="add" aria-label="Add '+p[1]+' to cart" data-n="'+p[1]+'">🛒</button></div></div></div>'}
+function $(s){return document.querySelector(s)}
+$('#cats').innerHTML=C.map(function(c){return '<a class="cat" href="#featured"><span>'+c[0]+'</span>'+c[1]+'</a>'}).join('');
+var DEF=P.slice(),L=DEF,col=null;
+function render(){$('#g1').innerHTML=L.slice(0,8).map(card).join('');$('#g2').innerHTML=L.slice(4,12).map(card).join('');$('#rail').innerHTML=L.map(card).join('');alist()}
+function alist(){$('#alist').innerHTML=L.map(function(p){return '<div class="ar"><span>'+p[0]+' '+p[1]+' · AED '+p[4]+'</span>'+(p.id?'<button data-d="'+p.id+'" aria-label="Delete">✕</button>':'')+'</div>'}).join('')}
+render();
+var n=0,tt;
+document.addEventListener('click',function(e){var b=e.target.closest('.add');if(!b)return;var pr=L.filter(function(x){return x[1]===b.dataset.n})[0];addc(b.dataset.n,pr?pr[4]:0);var c=$('#cnt');c.textContent=cart.reduce(function(s,i){return s+i.q},0);c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');var t=$('#toast');t.textContent=b.dataset.n+' added to cart';t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on')},1600)});
+$('#q').addEventListener('input',function(e){var v=e.target.value.toLowerCase();document.querySelectorAll('.card').forEach(function(c){var h=c.querySelector('h3');if(h)c.style.display=h.textContent.toLowerCase().indexOf(v)>-1?'':'none'})});
+$('#sub').onclick=function(){var t=$('#toast');t.textContent=$('#em').value?'Thanks for subscribing!':'Enter your email first';t.classList.add('on');setTimeout(function(){t.classList.remove('on')},1800)};
+var end=Date.now()+6*3600*1000;
+function tick(){var s=Math.max(0,Math.floor((end-Date.now())/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;function d(v,l){return '<div>'+String(v).padStart(2,'0')+'<small>'+l+'</small></div>'}$('#tm').innerHTML=d(h,'hrs')+d(m,'min')+d(x,'sec')}
+tick();setInterval(tick,1000);
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.1});
+var cart=[],O=[],ocol=null,isAd=false,sb=0;
+function addc(n,p){var i=cart.filter(function(x){return x.n===n})[0];if(i)i.q++;else cart.push({n:n,p:p,q:1})}
+function cartr(){var t=0;$('#clist').innerHTML=cart.length?cart.map(function(i){t+=i.p*i.q;return '<div class="ar"><span>'+i.n+' ×'+i.q+'</span><span>AED '+i.p*i.q+'</span></div>'}).join(''):'Your cart is empty.';$('#ctot').textContent=cart.length?'Total: AED '+t:''}
+function sub(){if(!isAd||!ocol||sb)return;sb=1;ocol.onSnapshot(function(s){O=s.docs.map(function(d){var v=d.data();return{id:d.id,name:cl(v.name),ph:cl(v.phone),total:+v.total||0,status:cl(v.status)||'new',t:+v.t||0,items:(v.items||[]).map(function(i){return{n:cl(i.n),p:+i.p||0,q:+i.q||0}})}}).sort(function(a,b){return b.t-a.t});dash()},function(){})}
+function dash(){var ok=O.filter(function(o){return o.status!=='cancelled'}),rev=ok.reduce(function(s,o){return s+o.total},0),it=ok.reduce(function(s,o){return s+o.items.reduce(function(a,i){return a+i.q},0)},0);
+$('#k1').textContent='AED '+rev.toLocaleString('en-US');$('#k2').textContent=O.length;$('#k3').textContent=it;$('#k4').textContent='AED '+(ok.length?Math.round(rev/ok.length):0);
+var days=[],d0=new Date();d0.setHours(0,0,0,0);for(var i=6;i>=0;i--){(function(s){days.push({l:new Date(s).toLocaleDateString('en-US',{weekday:'short'}),v:ok.filter(function(o){return o.t>=s&&o.t<s+864e5}).reduce(function(a,o){return a+o.total},0)})})(d0.getTime()-i*864e5)}
+var mx=Math.max.apply(null,days.map(function(d){return d.v}))||1;
+$('#chart').innerHTML=days.map(function(d){return '<div class="bc" title="AED '+d.v+'"><i style="height:'+Math.round(d.v/mx*100)+'%"></i><small>'+d.l+'</small></div>'}).join('');
+var tp={};ok.forEach(function(o){o.items.forEach(function(i){tp[i.n]=(tp[i.n]||0)+i.q})});
+$('#top').innerHTML=Object.keys(tp).sort(function(a,b){return tp[b]-tp[a]}).slice(0,5).map(function(k){return '<div class="ar"><span>'+k+'</span><b style="font-size:13px;display:inline">'+tp[k]+' sold</b></div>'}).join('')||'No sales yet.';
+$('#otb').innerHTML=O.slice(0,40).map(function(o){return '<tr><td>'+new Date(o.t).toLocaleDateString('en-GB',{day:'numeric',month:'short'})+'</td><td>'+o.name+'</td><td>'+o.ph+'</td><td>AED '+o.total+'</td><td><select data-o="'+o.id+'">'+['new','shipped','delivered','cancelled'].map(function(s){return '<option'+(s===o.status?' selected':'')+'>'+s+'</option>'}).join('')+'</select></td></tr>'}).join('')||'<tr><td colspan="5">No orders yet.</td></tr>'}
+$('#cico').onclick=function(){cartr();$('#cpan').hidden=false};
+$('#cx').onclick=function(){$('#cpan').hidden=true};
+$('#cgo').onclick=function(){var n=$('#cn').value.trim(),ph=$('#cph').value.trim();if(!cart.length)return tz('Cart is empty');if(!n||!ph)return tz('Enter name and phone');var t=cart.reduce(function(s,i){return s+i.p*i.q},0);SB.from('orders').insert({customer:n,phone:ph,items:cart,total:t,status:'new'}).then(function(r){if(r.error)return tz('Could not place order');cart=[];$('#cnt').textContent=0;cartr();$('#cpan').hidden=true;tz('Order placed. Thank you!')})};
+$('#adash').onclick=function(){$('#apan').hidden=true;dash();$('#dash').hidden=false};
+$('#dx').onclick=function(){$('#dash').hidden=true};
+$('#dman').onclick=function(){$('#dash').hidden=true;$('#apan').hidden=false};
+$('#otb').addEventListener('change',function(e){var s=e.target.closest('[data-o]');if(s&&ocol)ocol.doc(s.dataset.o).update({status:s.value}).catch(function(){tz('Could not update')})});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+function tz(m){var t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(function(){t.classList.remove('on')},1800)}
+function cl(s){return String(s==null?'':s).replace(/[<>&"']/g,'')}
+var SB=supabase.createClient('https://mcuxqdwovzwplijkdqwr.supabase.co','sb_publishable_Alq_5D67xyPxrDAvZObv9w_OTD9pOAq');
+function alist(){}
+function load(){SB.from('products').select('*').order('created_at',{ascending:false}).then(function(r){if(r.error||!r.data||!r.data.length)return;L=r.data.map(function(p){var a=[cl(p.emoji)||'📦',cl(p.name),'',0,+p.price||0,cl(p.badge),cl(p.category)];a.id=p.id;return a});render()})}
+load();
+$('#abtn').onclick=function(){$('#apan').hidden=!$('#apan').hidden};
+$('#aadd').onclick=function(){if(!col)return tz('Database not ready');var n=$('#an').value.trim(),p=+$('#ap').value;if(!n||!p)return tz('Enter name and price');col.doc('p'+Date.now()).set({e:$('#ae').value||'📦',n:n,r:'4.5',c:0,p:p,b:$('#ab').value,t:Date.now()}).then(function(){['ae','an','ap','ab'].forEach(function(i){$('#'+i).value=''});tz('Product added')}).catch(function(){tz('Could not save')})};
+$('#aseed').onclick=function(){if(!col)return tz('Database not ready');DEF.forEach(function(p,i){col.doc('s'+i).set({e:p[0],n:p[1],r:p[2],c:p[3],p:p[4],b:p[5],t:Date.now()-i}).catch(function(){})});tz('Samples loaded')};
+$('#alist').addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(b&&col)col.doc(b.dataset.d).delete().then(function(){tz('Deleted')}).catch(function(){tz('Could not delete')})});
+</script>
+</body>
+</html>
